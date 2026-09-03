@@ -1,4 +1,4 @@
-export interface Product {
+export interface Juego {
     id : string
     nombre: string
     precio: number

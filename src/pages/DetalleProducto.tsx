@@ -1,15 +1,53 @@
-import { useParams , Link } from "react-router"
 import { useEffect, useState } from "react"
-import { Product } from "../interfaces/Producto"
+import { useParams , Link } from "react-router"
+import type { Juego } from "../interfaces/Producto"
 
 
 const DetalleProducto = () => {
+
+  const { id } = useParams<{ id : string}>()
+  const [juego , setJuego] = useState<Juego | null | undefined>(undefined)
+
+  useEffect (()=> {
+     const juegos: Juego[] = JSON.parse(localStorage.getItem("Juegos") || "[]")
+
+     const encontrado = juegos.find((j)=> j.id === id
+    )
+
+    setJuego(encontrado ?? null)}, [id])
+
+  
+
+  if (juego === undefined){
+    return (<p>
+      Cargando juego de mesa...
+    </p>)
+
+  }
+  if (juego === null){
+    return (
+      <div>
+          Juego no encontrado
+      </div>
+    )
+
+  }
   return (
     <div>
-        <h1 className="text-">Detalle Producto</h1>
-        <p>mesa para 5</p>
+        <img src={juego.imagen} alt={juego.nombre} />
+        <h1>{juego.nombre}</h1>
+        <p>{juego.categoria}</p>
+        <p>{juego.precio}</p>
+        <p>{juego.descripcion}</p>
+        <p>Stock disponible : {juego.stock}</p>
+
+
+
     </div>
   )
 }
 
 export default DetalleProducto
+
+
+
