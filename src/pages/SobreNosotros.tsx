@@ -12,6 +12,29 @@ const SobreNosotros = () => {
       <p>“Después lo hacemos”</p>
 
       <h2>Nuestro equipo</h2>
+
+      <div>
+        <article>
+          <img src="" alt="Monzon Brandon" />
+          <h3>Monzon Brandon</h3>
+          </article>
+        <article>
+          <img src="" alt="gAle Jimenez" />
+          <h3>Ale Jimenez</h3>
+        </article>
+        <article>
+          <img src="" alt="Guille Jimenez" />
+          <h3>Guille Jimenez</h3>
+        </article>
+        <article>
+          <img src="" alt="Lautaro Pazzelli" />
+          <h3>Lautaro Pazzelli</h3>
+        </article>
+        <article>
+          <img src="" alt="Maximo Isaias" />
+          <h3>Maximo Isaias</h3>
+        </article>
+      </div>
     </main>
   )
 }
