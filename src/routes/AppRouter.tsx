@@ -3,6 +3,7 @@ import Home from '../pages/Home'
 import DetalleProducto from '../pages/DetalleProducto'
 import SobreNosotros from '../pages/SobreNosotros'
 import Error404 from '../pages/Error404'
+import AdminPanel from '../pages/AdminPanel'
 
 
 
@@ -14,6 +15,7 @@ const AppRouter = () => {
         <Route path= "detalle" element = {<DetalleProducto />}/>
         <Route path= "sobre" element = {<SobreNosotros />}/>  
         <Route path= "*" element = {<Error404 />}/>
+        <Route path="adminpanel" element={<AdminPanel />} />
       </Route>
 
     </Routes>
