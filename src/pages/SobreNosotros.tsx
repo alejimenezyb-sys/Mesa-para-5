@@ -32,7 +32,7 @@ const SobreNosotros = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-gray-100 py-10 px-4">
+    <main className="min-h-screen bg-[#0F172A] py-10 px-4">
       <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-lg p-8 md:p-12">
         <section className="mb-12">
           <h1 className="text-5xl md:text-6xl font-extrabold text-[#1B4965] mb-10">
