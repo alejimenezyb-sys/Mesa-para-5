@@ -1,8 +1,8 @@
-import monzonbrandon from "../assets/integrantes/monzonbrandon.jpeg";
-import alejimenez from "../assets/integrantes/alejimenez.jpeg";
-import lautaropazzelli from "../assets/integrantes/lautaropazzelli.jpeg";
-import maximoisaias from "../assets/integrantes/maximoisaias.jpeg";
-import guillejimenez from "../assets/integrantes/guillejimenez.jpeg";
+import monzonbrandon from "../assets/integrantes/monzonbrandon.webp";
+import alejimenez from "../assets/integrantes/alejimenez.webp";
+import lautaropazzelli from "../assets/integrantes/lautaropazzelli.webp";
+import maximoisaias from "../assets/integrantes/maximoisaias.webp";
+import guillejimenez from "../assets/integrantes/guillejimenez.webp";
 
 const SobreNosotros = () => {
   const integrantes = [
