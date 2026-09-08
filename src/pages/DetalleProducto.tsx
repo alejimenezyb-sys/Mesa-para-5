@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams , Link } from "react-router"
+import { useParams } from "react-router"
 import type { Juego } from "../interfaces/Producto"
 
 
