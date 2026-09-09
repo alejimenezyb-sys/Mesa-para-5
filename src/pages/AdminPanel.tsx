@@ -83,7 +83,7 @@ const AdminPanel = () => {
   return (
     <main className="min-h-screen bg-gray-100 p-4 md:p-8">
       <div className="mx-auto max-w-7xl">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
               Administración de juegos de mesa
@@ -108,7 +108,7 @@ const AdminPanel = () => {
               setJuegoEditando(null);
               setMostrarModal(true);
             }}
-            className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+            className="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 md:w-auto"
           >
             + Agregar juego de mesa
           </button>
@@ -234,7 +234,7 @@ const AdminPanel = () => {
       </div>
 
       {mostrarModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-start md:items-center justify-center overflow-y-auto bg-black/50 p-4">
           <div className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl">
             <h2 className="mb-4 text-xl font-bold text-gray-900">
               {juegoEditando !== null
