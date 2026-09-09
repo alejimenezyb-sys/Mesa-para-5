@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 const AdminPanel = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [juegoEditando, setJuegoEditando] = useState<number | null>(null);
-
+  const [busqueda, setBusqueda] = useState("");
+  const [categoriaFiltro, setCategoriaFiltro] = useState("");
   const [formulario, setFormulario] = useState({
     nombre: "",
     precio: "",
@@ -26,6 +27,17 @@ const AdminPanel = () => {
   useEffect(() => {
     localStorage.setItem("juegos", JSON.stringify(juegos));
   }, [juegos]);
+
+  const juegosFiltrados = juegos.filter((juego) => {
+    const coincideNombre = juego.nombre
+      .toLowerCase()
+      .includes(busqueda.toLowerCase());
+
+    const coincideCategoria =
+      categoriaFiltro === "" || juego.categoria === categoriaFiltro;
+
+    return coincideNombre && coincideCategoria;
+  });
 
   const agregarJuego = () => {
     if (
@@ -106,10 +118,16 @@ const AdminPanel = () => {
           <input
             type="text"
             placeholder="Buscar juego de mesa..."
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
             className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 outline-none focus:border-blue-500"
           />
 
-          <select className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 outline-none focus:border-blue-500 md:w-64">
+          <select
+            value={categoriaFiltro}
+            onChange={(e) => setCategoriaFiltro(e.target.value)}
+            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 outline-none focus:border-blue-500 md:w-64"
+          >
             <option value="">Todas las categorías</option>
             <option value="estrategia">Estrategia</option>
             <option value="familiar">Familiar</option>
@@ -148,7 +166,7 @@ const AdminPanel = () => {
             </thead>
 
             <tbody>
-              {juegos.length === 0 ? (
+              {juegosFiltrados.length === 0 ? (
                 <tr>
                   <td
                     colSpan={6}
@@ -158,51 +176,57 @@ const AdminPanel = () => {
                   </td>
                 </tr>
               ) : (
-                juegos.map((juego, index) => (
-                  <tr key={index} className="border-t border-gray-200">
-                    <td className="px-4 py-3">
-                      <img
-                        src={juego.imagen}
-                        alt={juego.nombre}
-                        className="h-16 w-16 rounded-lg object-cover"
-                      />
-                    </td>
+                juegosFiltrados.map((juego) => {
+                  const index = juegos.findIndex((j) => j === juego);
 
-                    <td className="px-4 py-3 font-medium text-gray-900">
-                      {juego.nombre}
-                    </td>
+                  return (
+                    <tr key={index} className="border-t border-gray-200">
+                      <td className="px-4 py-3">
+                        <img
+                          src={juego.imagen}
+                          alt={juego.nombre}
+                          className="h-16 w-16 rounded-lg object-cover"
+                        />
+                      </td>
 
-                    <td className="px-4 py-3 text-gray-600">
-                      {juego.categoria}
-                    </td>
+                      <td className="px-4 py-3 font-medium text-gray-900">
+                        {juego.nombre}
+                      </td>
 
-                    <td className="px-4 py-3 text-gray-600">${juego.precio}</td>
+                      <td className="px-4 py-3 text-gray-600">
+                        {juego.categoria}
+                      </td>
 
-                    <td className="px-4 py-3 text-gray-600">{juego.stock}</td>
+                      <td className="px-4 py-3 text-gray-600">
+                        ${juego.precio}
+                      </td>
 
-                    <td className="px-4 py-3">
-                      <button
-                        onClick={() => {
-                          setJuegoEditando(index);
-                          setFormulario(juego);
-                          setMostrarModal(true);
-                        }}
-                        className="mr-2 rounded-lg bg-yellow-500 px-3 py-2 text-sm font-medium text-white"
-                      >
-                        Editar
-                      </button>
+                      <td className="px-4 py-3 text-gray-600">{juego.stock}</td>
 
-                      <button
-                        onClick={() => {
-                          setJuegos(juegos.filter((_, i) => i !== index));
-                        }}
-                        className="rounded-lg bg-red-600 px-3 py-2 text-sm font-medium text-white"
-                      >
-                        Eliminar
-                      </button>
-                    </td>
-                  </tr>
-                ))
+                      <td className="px-4 py-3">
+                        <button
+                          onClick={() => {
+                            setJuegoEditando(index);
+                            setFormulario(juego);
+                            setMostrarModal(true);
+                          }}
+                          className="mr-2 rounded-lg bg-yellow-500 px-3 py-2 text-sm font-medium text-white"
+                        >
+                          Editar
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            setJuegos(juegos.filter((_, i) => i !== index));
+                          }}
+                          className="rounded-lg bg-red-600 px-3 py-2 text-sm font-medium text-white"
+                        >
+                          Eliminar
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })
               )}
             </tbody>
           </table>
