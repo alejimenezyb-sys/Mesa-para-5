@@ -217,7 +217,13 @@ const AdminPanel = () => {
 
                         <button
                           onClick={() => {
-                            setJuegos(juegos.filter((_, i) => i !== index));
+                            const confirmar = window.confirm(
+                              "¿Estás seguro de que querés eliminar este juego?",
+                            );
+
+                            if (confirmar) {
+                              setJuegos(juegos.filter((_, i) => i !== index));
+                            }
                           }}
                           className="rounded-lg bg-red-600 px-3 py-2 text-sm font-medium text-white"
                         >
