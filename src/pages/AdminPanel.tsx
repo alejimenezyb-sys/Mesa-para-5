@@ -172,7 +172,9 @@ const AdminPanel = () => {
                     colSpan={6}
                     className="px-4 py-10 text-center text-gray-500"
                   >
-                    No hay juegos de mesa para mostrar
+                    {busqueda || categoriaFiltro
+                      ? "No se encontraron juegos con esos filtros"
+                      : "Todavía no hay juegos de mesa cargados"}
                   </td>
                 </tr>
               ) : (
