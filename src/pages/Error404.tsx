@@ -12,7 +12,7 @@ const Error404 = () => {
         <p className='text-slate-300 text-sm sm:text-2xl md:text-3xl'>Parece que esta ficha se ha salido del tablero</p>
        </div>
        <div className="divBotones w-full sm:w-auto">
-         <a className='inline-block w-full sm:w-auto bg-[#1B4965] hover:bg-amber-600 text-slate-950 font-bold px-6 py-2.5 rounded-xl transition-all shadow-md active:scale-95 text-center mt-2 mb-2'>Volver al Inicio</a>
+         <a className='cursor-pointer inline-block w-full sm:w-auto bg-[#1B4965] hover:bg-amber-600 text-slate-950 font-bold px-6 py-2.5 rounded-xl transition-all shadow-md active:scale-95 text-center mt-2 mb-2'>Volver al Inicio</a>
        </div>
       </div>
       </div>
