@@ -321,12 +321,12 @@ const Footer = () => {
                 className="w-full rounded-lg border border-white/10 bg-white/10 px-4 py-3 text-sm text-white outline-none placeholder:text-gray-400 focus:border-[#f5c979]"
               />
 
-              <button
-                type="button"
-                className="mt-3 w-full rounded-lg bg-[#f5c979] px-4 py-3 text-sm font-semibold text-[#364553] transition hover:brightness-105"
+              <a
+                href="#"
+                className="mt-3 block w-full rounded-lg bg-[#f5c979] px-4 py-3 text-center text-sm font-semibold text-[#364553] transition hover:brightness-105"
               >
                 Suscribirme
-              </button>
+              </a>
             </div>
 
             <p className="mt-4 text-xs text-gray-400">
