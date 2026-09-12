@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const Footer = () => {
   return (
     <footer className="bg-[#364553] text-white">
@@ -47,27 +49,19 @@ const Footer = () => {
 
             <ul className="mt-5 space-y-3 text-sm text-gray-300">
               <li>
-                <a href="#" className="transition hover:text-white">
-                  Inicio
-                </a>
+                <Link to= '/404' className="transition hover:text-white">Inicio</Link>
               </li>
 
               <li>
-                <a href="#" className="transition hover:text-white">
-                  Juegos
-                </a>
+                <Link to= '/404' className="transition hover:text-white">Juegos</Link>
               </li>
 
               <li>
-                <a href="#" className="transition hover:text-white">
-                  Sobre nosotros
-                </a>
+                <Link to= '/404' className="transition hover:text-white">Sobre Nosotros</Link>
               </li>
 
               <li>
-                <a href="#" className="transition hover:text-white">
-                  Contacto
-                </a>
+                <Link to= '/404' className="transition hover:text-white">Contacto</Link>
               </li>
             </ul>
           </div>
@@ -96,39 +90,28 @@ const Footer = () => {
 
             <ul className="mt-5 space-y-3 text-sm text-gray-300">
               <li>
-                <a href="#" className="transition hover:text-white">
-                  Estrategia
-                </a>
+                                <Link to= '/404' className="transition hover:text-white">Estrategia</Link>
+
               </li>
 
               <li>
-                <a href="#" className="transition hover:text-white">
-                  Familiar
-                </a>
+                <Link to= '/404' className="transition hover:text-white">Familiar</Link>
               </li>
 
               <li>
-                <a href="#" className="transition hover:text-white">
-                  Cartas
-                </a>
+                <Link to= '/404' className="transition hover:text-white">Cartas</Link>
               </li>
 
               <li>
-                <a href="#" className="transition hover:text-white">
-                  Cooperativos
-                </a>
+                <Link to= '/404' className="transition hover:text-white">Cooperativos</Link>
               </li>
 
               <li>
-                <a href="#" className="transition hover:text-white">
-                  Fiesta
-                </a>
+                <Link to= '/404' className="transition hover:text-white">Fiesta</Link>
               </li>
 
               <li>
-                <a href="#" className="transition hover:text-white">
-                  Todos los juegos
-                </a>
+                <Link to= '/404' className="transition hover:text-white">Todos los Juegos</Link>
               </li>
             </ul>
           </div>
@@ -321,12 +304,7 @@ const Footer = () => {
                 className="w-full rounded-lg border border-white/10 bg-white/10 px-4 py-3 text-sm text-white outline-none placeholder:text-gray-400 focus:border-[#f5c979]"
               />
 
-              <a
-                href="#"
-                className="mt-3 block w-full rounded-lg bg-[#f5c979] px-4 py-3 text-center text-sm font-semibold text-[#364553] transition hover:brightness-105"
-              >
-                Suscribirme
-              </a>
+              <Link to= '/404' className="mt-3 block w-full rounded-lg bg-[#f5c979] px-4 py-3 text-center text-sm font-semibold text-[#364553] transition hover:brightness-105">Suscribirme</Link>
             </div>
 
             <p className="mt-4 text-xs text-gray-400">
