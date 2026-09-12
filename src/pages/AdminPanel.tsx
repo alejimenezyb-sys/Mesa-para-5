@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 const AdminPanel = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [juegoEditando, setJuegoEditando] = useState<number | null>(null);
-
+  const [busqueda, setBusqueda] = useState("");
+  const [categoriaFiltro, setCategoriaFiltro] = useState("");
   const [formulario, setFormulario] = useState({
     nombre: "",
     precio: "",
@@ -27,6 +28,17 @@ const AdminPanel = () => {
   useEffect(() => {
     localStorage.setItem("juegos", JSON.stringify(juegos));
   }, [juegos]);
+
+  const juegosFiltrados = juegos.filter((juego) => {
+    const coincideNombre = juego.nombre
+      .toLowerCase()
+      .includes(busqueda.toLowerCase());
+
+    const coincideCategoria =
+      categoriaFiltro === "" || juego.categoria === categoriaFiltro;
+
+    return coincideNombre && coincideCategoria;
+  });
 
   const agregarJuego = () => {
     if (
@@ -72,9 +84,9 @@ const AdminPanel = () => {
   return (
     <main className="min-h-screen bg-gray-100 p-4 md:p-8">
       <div className="mx-auto max-w-7xl">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
               Administración de juegos de mesa
             </h1>
 
@@ -97,7 +109,7 @@ const AdminPanel = () => {
               setJuegoEditando(null);
               setMostrarModal(true);
             }}
-            className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+            className="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 md:w-auto"
           >
             + Agregar juego de mesa
           </button>
@@ -107,10 +119,16 @@ const AdminPanel = () => {
           <input
             type="text"
             placeholder="Buscar juego de mesa..."
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
             className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 outline-none focus:border-blue-500"
           />
 
-          <select className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 outline-none focus:border-blue-500 md:w-64">
+          <select
+            value={categoriaFiltro}
+            onChange={(e) => setCategoriaFiltro(e.target.value)}
+            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 outline-none focus:border-blue-500 md:w-64"
+          >
             <option value="">Todas las categorías</option>
             <option value="estrategia">Estrategia</option>
             <option value="familiar">Familiar</option>
@@ -121,7 +139,7 @@ const AdminPanel = () => {
         <div className="mt-6 overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-sm">
           <table className="w-full min-w-[700px]">
             <thead className="bg-gray-100">
-              <tr>
+              <tr className="border-b border-gray-200">
                 <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
                   Imagen
                 </th>
@@ -149,61 +167,90 @@ const AdminPanel = () => {
             </thead>
 
             <tbody>
-              {juegos.length === 0 ? (
+              {juegosFiltrados.length === 0 ? (
                 <tr>
                   <td
                     colSpan={6}
                     className="px-4 py-10 text-center text-gray-500"
                   >
-                    No hay juegos de mesa para mostrar
+                    {busqueda || categoriaFiltro
+                      ? "No se encontraron juegos con esos filtros"
+                      : "Todavía no hay juegos de mesa cargados"}
                   </td>
                 </tr>
               ) : (
-                juegos.map((juego, index) => (
-                  <tr key={index} className="border-t border-gray-200">
-                    <td className="px-4 py-3">
-                      <img
-                        src={juego.imagen}
-                        alt={juego.nombre}
-                        className="h-16 w-16 rounded-lg object-cover"
-                      />
-                    </td>
+                juegosFiltrados.map((juego) => {
+                  const index = juegos.findIndex((j) => j === juego);
 
-                    <td className="px-4 py-3 font-medium text-gray-900">
-                      {juego.nombre}
-                    </td>
+                  return (
+                    <tr
+                      key={index}
+                      className="border-t border-gray-200 transition hover:bg-gray-50"
+                    >
+                      <td className="px-4 py-3">
+                        <img
+                          src={juego.imagen}
+                          alt={juego.nombre}
+                          className="h-16 w-16 rounded-lg object-cover"
+                        />
+                      </td>
 
-                    <td className="px-4 py-3 text-gray-600">
-                      {juego.categoria}
-                    </td>
+                      <td className="px-4 py-3 font-medium text-gray-900">
+                        {juego.nombre}
+                      </td>
 
-                    <td className="px-4 py-3 text-gray-600">${juego.precio}</td>
+                      <td className="px-4 py-4 text-sm text-gray-600">
+                        <span className="inline-flex rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                          {juego.categoria}
+                        </span>
+                      </td>
 
-                    <td className="px-4 py-3 text-gray-600">{juego.stock}</td>
+                      <td className="px-4 py-3 text-sm font-medium text-gray-800">
+                        ${juego.precio}
+                      </td>
 
-                    <td className="px-4 py-3">
-                      <button
-                        onClick={() => {
-                          setJuegoEditando(index);
-                          setFormulario(juego);
-                          setMostrarModal(true);
-                        }}
-                        className="mr-2 rounded-lg bg-yellow-500 px-3 py-2 text-sm font-medium text-white"
-                      >
-                        Editar
-                      </button>
+                      <td className="px-4 py-3 text-sm font-medium text-gray-700">
+                        {juego.stock === "0" ? (
+                          <span className="inline-flex rounded-full bg-red-50 px-3 py-1 text-xs font-medium text-red-700">
+                            Sin stock
+                          </span>
+                        ) : (
+                          `${juego.stock} ${juego.stock === "1" ? "unidad" : "unidades"}`
+                        )}
+                      </td>
 
-                      <button
-                        onClick={() => {
-                          setJuegos(juegos.filter((_, i) => i !== index));
-                        }}
-                        className="rounded-lg bg-red-600 px-3 py-2 text-sm font-medium text-white"
-                      >
-                        Eliminar
-                      </button>
-                    </td>
-                  </tr>
-                ))
+                      <td className="px-4 py-3">
+                        <div className="flex flex-wrap gap-2">
+                          <button
+                            onClick={() => {
+                              setJuegoEditando(index);
+                              setFormulario(juego);
+                              setMostrarModal(true);
+                            }}
+                            className="rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700 transition hover:bg-blue-100 hover:shadow-sm"
+                          >
+                            Editar
+                          </button>
+
+                          <button
+                            onClick={() => {
+                              const confirmar = window.confirm(
+                                "¿Estás seguro de que querés eliminar este juego?",
+                              );
+
+                              if (confirmar) {
+                                setJuegos(juegos.filter((_, i) => i !== index));
+                              }
+                            }}
+                            className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm font-medium text-red-700 transition hover:bg-red-100 hover:shadow-sm"
+                          >
+                            Eliminar
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })
               )}
             </tbody>
           </table>
@@ -211,13 +258,19 @@ const AdminPanel = () => {
       </div>
 
       {mostrarModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-start md:items-center justify-center overflow-y-auto bg-black/50 p-4">
           <div className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl">
-            <h2 className="mb-4 text-xl font-bold text-gray-900">
+            <h2 className="text-xl font-bold text-gray-900">
               {juegoEditando !== null
                 ? "Editar juego de mesa"
                 : "Agregar juego de mesa"}
             </h2>
+
+            <p className="mt-1 text-sm text-gray-500">
+              {juegoEditando !== null
+                ? "Modificá los datos del juego seleccionado."
+                : "Completá los datos para agregar un nuevo juego."}
+            </p>
 
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
@@ -234,7 +287,7 @@ const AdminPanel = () => {
                     nombre: e.target.value,
                   })
                 }
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
 
@@ -253,7 +306,7 @@ const AdminPanel = () => {
                     precio: e.target.value,
                   })
                 }
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
 
@@ -270,7 +323,7 @@ const AdminPanel = () => {
                     categoria: e.target.value,
                   })
                 }
-                className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 outline-none focus:border-blue-500"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               >
                 <option value="">Seleccionar categoría</option>
                 <option value="estrategia">Estrategia</option>
@@ -294,7 +347,7 @@ const AdminPanel = () => {
                     imagen: e.target.value,
                   })
                 }
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
 
@@ -312,8 +365,7 @@ const AdminPanel = () => {
                     descripcion: e.target.value,
                   })
                 }
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
-                rows={3}
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
 
@@ -332,13 +384,13 @@ const AdminPanel = () => {
                     stock: e.target.value,
                   })
                 }
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
 
             <button
               onClick={agregarJuego}
-              className="mt-6 rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+              className="mt-6 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700 hover:shadow-sm"
             >
               {juegoEditando !== null
                 ? "Guardar cambios"
@@ -347,7 +399,7 @@ const AdminPanel = () => {
 
             <button
               onClick={() => setMostrarModal(false)}
-              className="mt-6 rounded-lg border border-gray-300 px-4 py-2 font-medium text-gray-700 hover:bg-gray-100"
+              className="mt-6 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-50 hover:shadow-sm"
             >
               Cancelar
             </button>
