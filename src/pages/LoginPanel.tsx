@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-
+import { useState } from "react";
 
 
 const USERS = [
@@ -27,15 +27,26 @@ const Login = () => {
     formState: { errors } 
   } = useForm<DatosLogin>();
   const navigate = useNavigate() 
+   const [errorLogin, setErrorLogin] = useState("");
 
     const iniciarSesion = (data: DatosLogin) => {
-      console.log(data.correo)
-      console.log(data.contraseña)
+  const usuarioEncontrado = USERS.find((usuario) => {
+    return (
+      usuario.email === data.correo &&
+      usuario.contraseña === data.contraseña
+    );
+  });
 
-      navigate("/adminpanel")
-     }
 
-     
+  if (usuarioEncontrado) {
+    console.log("USUARIO ENCONTRADO:", usuarioEncontrado)
+    setErrorLogin("")
+    navigate("/adminpanel");
+  } else {
+    console.log("Correo o contraseña incorrectos");
+    setErrorLogin("Correo o contraseña incorrectos")
+  }
+};
 
   return (
     <div className="min-h-screen bg-[#CAE9FF] flex items-center justify-center p-4">
@@ -71,7 +82,7 @@ const Login = () => {
             />
             {errors.correo && (
           <p className="text-red-500">
-            {errors.correo.message}
+            {errors.correo?.message}
           </p>
         )}
           </div>
@@ -96,11 +107,16 @@ const Login = () => {
 
                {errors.contraseña && (
           <p className="text-red-500">
-            {errors.contraseña.message}
+            {errors.contraseña?.message}
           </p>
             )}
           </div>
 
+            {errorLogin && (
+           <p className="text-red-500 text-sm">
+           {errorLogin}
+         </p>
+          )}
           <button
             type="submit"
             className="w-full py-3 px-4 bg-[#62B6CB] hover:bg-[#5FA8D3] text-[#1B4965] font-bold rounded-lg shadow-md transition duration-200"
@@ -111,6 +127,6 @@ const Login = () => {
       </div>
     </div>
   );
-};
+ }
 
 export default Login;
