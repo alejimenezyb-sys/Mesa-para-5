@@ -1,5 +1,6 @@
 import { NavLink } from "react-router"
 import { IoMdPerson } from "react-icons/io";
+import { RiAdminFill } from "react-icons/ri";
 
 const NavBarApp = () => {
 
@@ -15,6 +16,10 @@ const NavBarApp = () => {
         {
             text : <IoMdPerson />,
             path: "login"
+        },
+        {
+            text: <RiAdminFill />,
+            path: "adminpanel"
         }
     ]
 
@@ -32,7 +37,7 @@ const NavBarApp = () => {
                                  to={item.path} 
                                  className={({isActive})=>`inline-block transition-transform duration-200 ${isActive ? " scale-110 text-[#003459] font-bold" : "text-[#1B4965]"}`  }>{item.text}</NavLink></li>
 
-                                 //className={({isActive})=> `inline-block transition-transform duration-200 ${isActive ? "scale-110 text-[#003459] font-bold" : "text-[#1B4965]"}`}>{item.text}</NavLink></li>
+                                 
                     )
                 }
             </ul>
