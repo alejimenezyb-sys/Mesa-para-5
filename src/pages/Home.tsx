@@ -1,4 +1,9 @@
-
+import catanImg from "../assets/juegos/catan.jpg";
+import dixitImg from "../assets/juegos/dixit.jpg";
+import monopolyImg from "../assets/juegos/monopoly.jpg";
+import unoImg from "../assets/juegos/uno.jpg";
+import virusImg from "../assets/juegos/virus.jpg";
+import explodingKittensImg from "../assets/juegos/exploding.jpg";
 import { useState } from "react";
 import ProductCard from "../components/ProductCard";
 import SearchBar from "../components/SearchBar";
@@ -17,42 +22,42 @@ const productosIniciales: Producto[] = [
     nombre: "Catan",
     categoria: "Estrategia",
     precio: 35000,
-    imagen: "https://placehold.co/600x400?text=Catan",
+    imagen: catanImg,
   },
   {
     id: 2,
     nombre: "Dixit",
     categoria: "Familiar",
     precio: 30000,
-    imagen: "https://placehold.co/600x400?text=Dixit",
+    imagen: dixitImg,
   },
   {
     id: 3,
     nombre: "Uno",
     categoria: "Cartas",
     precio: 12000,
-    imagen: "https://placehold.co/600x400?text=Uno",
+    imagen: unoImg,
   },
   {
     id: 4,
     nombre: "Monopoly",
     categoria: "Familiar",
     precio: 40000,
-    imagen: "https://placehold.co/600x400?text=Monopoly",
+    imagen: monopolyImg,
   },
   {
     id: 5,
     nombre: "Virus!",
     categoria: "Cartas",
     precio: 15000,
-    imagen: "https://placehold.co/600x400?text=Virus",
+    imagen: virusImg,
   },
   {
     id: 6,
     nombre: "Exploding Kittens",
     categoria: "Party",
     precio: 18000,
-    imagen: "https://placehold.co/600x400?text=Exploding+Kittens",
+    imagen: explodingKittensImg,
   },
 ];
 
