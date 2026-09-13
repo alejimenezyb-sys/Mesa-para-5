@@ -1,6 +1,21 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
+
+
+const USERS = [
+  { email : "admin@gmail.com" ,
+    contraseña: "admin4444",
+    rol : "admin"
+
+  },
+  { email: "usuario123@gmail.com",
+    contraseña : "megustalapizza",
+    rol : "user"
+  }
+]
+
+
 type DatosLogin = {
   correo: string 
   contraseña: string
