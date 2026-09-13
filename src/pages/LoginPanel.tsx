@@ -1,19 +1,3 @@
-import React, { useState } from 'react';
-
-const emailRegexp = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-
-const USERS = [
-  { email : "admin@gmail.com" ,
-    contraseña: "admin4444",
-    rol : "admin"
-
-  },
-  { email: "usuario123@gmail.com",
-    contraseña : "megustalapizza",
-    rol : "user"
-  }
-]
-
 const Login = () => {
   return (
     <div className="min-h-screen bg-[#CAE9FF] flex items-center justify-center p-4">
