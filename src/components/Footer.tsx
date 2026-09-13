@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+
   return (
     <footer className="bg-[#364553] text-white">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
@@ -49,19 +52,27 @@ const Footer = () => {
 
             <ul className="mt-5 space-y-3 text-sm text-gray-300">
               <li>
-                <Link to= '/404' className="transition hover:text-white">Inicio</Link>
+                <Link to="/404" className="transition hover:text-white">
+                  Inicio
+                </Link>
               </li>
 
               <li>
-                <Link to= '/404' className="transition hover:text-white">Juegos</Link>
+                <Link to="/404" className="transition hover:text-white">
+                  Juegos
+                </Link>
               </li>
 
               <li>
-                <Link to= '/404' className="transition hover:text-white">Sobre Nosotros</Link>
+                <Link to="/404" className="transition hover:text-white">
+                  Sobre Nosotros
+                </Link>
               </li>
 
               <li>
-                <Link to= '/404' className="transition hover:text-white">Contacto</Link>
+                <Link to="/404" className="transition hover:text-white">
+                  Contacto
+                </Link>
               </li>
             </ul>
           </div>
@@ -90,28 +101,39 @@ const Footer = () => {
 
             <ul className="mt-5 space-y-3 text-sm text-gray-300">
               <li>
-                                <Link to= '/404' className="transition hover:text-white">Estrategia</Link>
-
+                <Link to="/404" className="transition hover:text-white">
+                  Estrategia
+                </Link>
               </li>
 
               <li>
-                <Link to= '/404' className="transition hover:text-white">Familiar</Link>
+                <Link to="/404" className="transition hover:text-white">
+                  Familiar
+                </Link>
               </li>
 
               <li>
-                <Link to= '/404' className="transition hover:text-white">Cartas</Link>
+                <Link to="/404" className="transition hover:text-white">
+                  Cartas
+                </Link>
               </li>
 
               <li>
-                <Link to= '/404' className="transition hover:text-white">Cooperativos</Link>
+                <Link to="/404" className="transition hover:text-white">
+                  Cooperativos
+                </Link>
               </li>
 
               <li>
-                <Link to= '/404' className="transition hover:text-white">Fiesta</Link>
+                <Link to="/404" className="transition hover:text-white">
+                  Fiesta
+                </Link>
               </li>
 
               <li>
-                <Link to= '/404' className="transition hover:text-white">Todos los Juegos</Link>
+                <Link to="/404" className="transition hover:text-white">
+                  Todos los Juegos
+                </Link>
               </li>
             </ul>
           </div>
@@ -300,11 +322,28 @@ const Footer = () => {
             <div className="mt-5">
               <input
                 type="email"
+                required
                 placeholder="Tu email..."
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full rounded-lg border border-white/10 bg-white/10 px-4 py-3 text-sm text-white outline-none placeholder:text-gray-400 focus:border-[#f5c979]"
               />
 
-              <Link to= '/404' className="mt-3 block w-full rounded-lg bg-[#f5c979] px-4 py-3 text-center text-sm font-semibold text-[#364553] transition hover:brightness-105">Suscribirme</Link>
+              <Link
+                to="/404"
+                onClick={(e) => {
+                  const input = e.currentTarget
+                    .previousElementSibling as HTMLInputElement;
+
+                  if (!input.checkValidity()) {
+                    e.preventDefault();
+                    input.reportValidity();
+                  }
+                }}
+                className="mt-3 block w-full rounded-lg bg-[#f5c979] px-4 py-3 text-center text-sm font-semibold text-[#364553] transition hover:brightness-105"
+              >
+                Suscribirme
+              </Link>
             </div>
 
             <p className="mt-4 text-xs text-gray-400">
