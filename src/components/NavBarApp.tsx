@@ -1,4 +1,5 @@
 import { NavLink } from "react-router"
+import { IoMdPerson } from "react-icons/io";
 
 const NavBarApp = () => {
 
@@ -10,6 +11,10 @@ const NavBarApp = () => {
         {
             text: "Sobre Nosotros",
             path: "sobre"
+        },
+        {
+            text : <IoMdPerson />,
+            path: "login"
         }
     ]
 
