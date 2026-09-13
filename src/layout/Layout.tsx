@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 const LayoutApp = () => {
   return (
     <>
-    <header>
+    <header className="sticky top-0 z-50">
     <NavBarApp/>
     </header>
     <main>

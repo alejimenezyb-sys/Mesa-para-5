@@ -19,7 +19,7 @@ const AppRouter = () => {
         <Route index element = {<Home />}/>
         <Route path= "detalle" element = {<DetalleProducto />}/>
         <Route path= "sobre" element = {<SobreNosotros />}/>  
-        <Route path="Login" element={<Login />} />
+        <Route path="login" element={<Login />} />
         <Route path= "*" element = {<Error404 />}/>
         <Route path="adminpanel" element={<AdminPanel />} />
 
