@@ -41,7 +41,8 @@ const Login = () => {
   if (usuarioEncontrado) {
     console.log("USUARIO ENCONTRADO:", usuarioEncontrado)
     setErrorLogin("")
-    navigate("/adminpanel");
+    localStorage.setItem("rol", usuarioEncontrado.rol)
+    window.location.href = "/adminpanel";
   } else {
     console.log("Correo o contraseña incorrectos");
     setErrorLogin("Correo o contraseña incorrectos")
