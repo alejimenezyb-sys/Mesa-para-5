@@ -20,8 +20,8 @@ const AppRouter = () => {
         <Route path= "detalle" element = {<DetalleProducto />}/>
         <Route path= "sobre" element = {<SobreNosotros />}/>  
         <Route path="login" element={<Login />} />
-        <Route path= "*" element = {<Error404 />}/>
         <Route path="adminpanel" element={<AdminPanel />} />
+        <Route path= "*" element = {<Error404 />}/>
 
         </Route>
       
