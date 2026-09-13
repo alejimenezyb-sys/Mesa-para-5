@@ -30,7 +30,9 @@ const NavBarApp = () => {
                             <NavLink 
                                   
                                  to={item.path} 
-                                 className={({isActive})=> isActive ? "text-[#003459] font-bold" : "text-[#1B4965]"}>{item.text}</NavLink></li>
+                                 className={({isActive})=>`inline-block transition-transform duration-200 ${isActive ? " scale-110 text-[#003459] font-bold" : "text-[#1B4965]"}`  }>{item.text}</NavLink></li>
+
+                                 //className={({isActive})=> `inline-block transition-transform duration-200 ${isActive ? "scale-110 text-[#003459] font-bold" : "text-[#1B4965]"}`}>{item.text}</NavLink></li>
                     )
                 }
             </ul>
