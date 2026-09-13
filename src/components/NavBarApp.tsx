@@ -3,7 +3,7 @@ import { IoMdPerson } from "react-icons/io";
 import { RiAdminFill } from "react-icons/ri";
 
 const NavBarApp = () => {
-
+    const isAdmin = localStorage.getItem("rol") === "admin"
     const ListMenu= [
         {
             text: "Inicio",
@@ -17,10 +17,12 @@ const NavBarApp = () => {
             text : <IoMdPerson />,
             path: "login"
         },
-        {
-            text: <RiAdminFill />,
-            path: "adminpanel"
-        }
+        ... (isAdmin ? [
+            {
+                text : <RiAdminFill />,
+                path: "adminpanel"
+            }]  : []   ) 
+        
     ]
 
     
