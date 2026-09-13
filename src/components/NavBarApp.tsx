@@ -20,9 +20,9 @@ const NavBarApp = () => {
 
     
   return (
-    <nav className="bg-[#CAE9FF] flex justify-around items-center">
+    <nav className="bg-[#CAE9FF] flex justify-around items-center py-4">
         <div className="text-[#1B4965] font-semibold">
-            <ul className="flex gap-4">
+            <ul className="flex gap-4 items-center">
                 {
                     ListMenu.map((item , index)=>
                     
