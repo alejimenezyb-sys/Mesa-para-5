@@ -1,78 +1,59 @@
-# React + TypeScript + Vite
+🎲 Mesa para 5 - Tienda Online de Juegos de Mesa
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+📖 Sobre el Proyecto
 
-Currently, two official plugins are available:
+Mesa para 5 es una plataforma e-commerce desarrollada para los apasionados de los juegos de mesa. Permite explorar un catálogo diverso de juegos, consultar sus características y descubrir nuevas opciones para disfrutar en grupo o en solitario.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+❓ ¿Qué hicimos?
+Desarrollamos una tienda online interactiva y moderna de juegos de mesa que permite explorar y conocer diferentes juegos, consultar sus características detalladas y descubrir nuevas opciones para jugar.
 
-## React Compiler
+👥 ¿Quiénes somos?
+Somos un equipo de cinco estudiantes que trabajamos en conjunto para llevar adelante este proyecto, combinando nuestras ideas y conocimientos de desarrollo web.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+💬 Frase del equipo: "Después lo hacemos"
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+🛠️ Tecnologías y Herramientas
 
-## Expanding the ESLint configuration
+Para el desarrollo de este proyecto utilizamos diferentes tecnologías y herramientas que nos permitieron construir la tienda online y trabajar de manera colaborativa:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+⚛️ React - Biblioteca principal para la construcción de interfaces de usuario.
+📘 TypeScript - Tipado estático para un código más limpio y robusto.
+⚡ Vite - Entorno de desarrollo rápido.
+🎨 Tailwind CSS - Framework de CSS para un diseño moderno y responsive.
+🗺️ React Router - Manejo de rutas y navegación dentro de la aplicación.
+📦 Git & GitHub - Control de versiones y trabajo colaborativo.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+👨‍💻 Nuestro Equipo
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Monzon Brandon
+Ale Jimenez
+Guille Jimenez
+Lautaro Pazzelli
+Maximo Isaias
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+🚀 Instalación y Ejecución Local
 
-```
+Si deseas probar el proyecto localmente, sigue estos pasos:
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+1. Clonar el repositorio:
+   git clone https://github.com/alejimenezyb-sys/Mesa-para-5.git
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+2. Ingresar a la carpeta del proyecto:
+   cd Mesa-para-5
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+3. Instalar dependencias:
+   pnpm install
 
-```
+# o bien
+
+npm install
+
+4. Ejecutar en modo desarrollo:
+   pnpm dev
+
+# o bien
+
+npm run dev
+
+5. Abrir en el navegador:
+   Ingresa a http://localhost:5173 para ver la aplicación funcionando.
