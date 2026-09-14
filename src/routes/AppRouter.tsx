@@ -18,11 +18,11 @@ const AppRouter = () => {
 
 
         <Route index element = {<Home />}/>
-        <Route path= "detalle" element = {<DetalleProducto />}/>
         <Route path= "sobre" element = {<SobreNosotros />}/>  
+        <Route path="login" element={<Login />} />
 
         <Route element={<AdminRoute/>}>
-        <Route path="login" element={<Login />} />
+        <Route path= "detalle" element = {<DetalleProducto />}/>
         <Route path="adminpanel" element={<AdminPanel />} />
 
         </Route>
