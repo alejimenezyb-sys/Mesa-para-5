@@ -1,3 +1,5 @@
+import BotonDetalle from "./BotonDetalle";
+
 type ProductCardProps = {
   nombre: string;
   categoria: string;
@@ -31,6 +33,7 @@ const ProductCard = ({
         <p className="mt-3 text-lg font-bold text-[#1565C0]">
           ${precio}
         </p>
+        <BotonDetalle />
       </div>
     </article>
   );
